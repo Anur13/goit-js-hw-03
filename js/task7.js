@@ -31,30 +31,15 @@ const account = {
         return transaction
     },
 
-    /*
-     * Метод отвечающий за добавление суммы к балансу.
-     * Принимает сумму транзакции.
-     * Вызывает createTransaction для создания объекта транзакции
-     * после чего добавляет его в историю транзакций
-     */
     deposit(amount) {
         this.createTransaction(amount, `deposit`), (this.balance += amount)
         this.transactions.push(this.createTransaction(amount, `deposit`))
     },
 
-    /*
-     * Метод отвечающий за снятие суммы с баланса.
-     * Принимает сумму танзакции.
-     * Вызывает createTransaction для создания объекта транзакции
-     * после чего добавляет его в историю транзакций.
-     *
-     * Если amount больше чем текущий баланс, выводи сообщение
-     * о том, что снятие такой суммы не возможно, недостаточно средств.
-     */
     withdraw(amount) {
         this.createTransaction(amount, `withdraw`), this.transactions.push(this.createTransaction(amount, `withdraw`))
         if (amount > this.balance) {
-            console.log(`снятие такой суммы не возможно, недостаточно средств.`)
+            return `снятие такой суммы не возможно, недостаточно средств.`
         }
         this.balance -= amount
     },
@@ -70,6 +55,9 @@ const account = {
      * Метод ищет и возвращает объект транзации по id
      */
     getTransactionDetails(id) {
+        if (account.transactions[id] === undefined) {
+            return `Транзакции с таким id нет`
+        }
         return account.transactions[id]
     },
 
@@ -81,24 +69,26 @@ const account = {
         let total = 0
 
         for (let key of this.transactions) {
-            // console.log(key.amount)
             if (key.type === type) {
                 total += key.amount
             }
         }
-        console.log(total)
+        return total
     },
 }
-console.log(account.deposit(500))
-console.log(account.deposit(1500))
+account.deposit(500)
+account.deposit(1500)
 
-console.log(account.deposit(500))
-console.log(account.withdraw(400))
-console.log(account.withdraw(400))
+account.deposit(500)
+account.withdraw(400)
+account.withdraw(400)
 
 // console.log(account.balance)
 // console.log(account.transactions)
-console.log(account.getBalance())
-// console.log(account.getTransactionDetails(0))
+// console.log(account.getBalance())
+console.log(account.getTransactionDetails(2))
 // console.log(account.transactions[0])
-console.log(account.getTransactionTotal(`deposit`))
+// console.log(account.getTransactionTotal(`deposit`))
+// console.log(account.getTransactionTotal(`withdraw`))
+
+// console.log(account.transactions)
