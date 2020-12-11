@@ -24,4 +24,21 @@ console.log(getAllPropValues(products, "name")) // ['Радар', 'Сканер'
 
 console.log(getAllPropValues(products, "quantity")) // [4, 3, 7, 2]
 
-console.log(getAllPropValues(products, "category")) // []
+console.log(getAllPropValues(products, "price")) // []
+
+// const getAllPropValues = function (arr, prop) {
+//     let category = []
+
+//     for (let i = 0; i < arr.length; i++) {
+//         let values = Object.entries(products[i])
+//         // console.log(values)
+//         for (let j = 0; j < values.length; j++) {
+//             let value = values[j]
+//             // console.log(value)
+//             if (value[0] === prop) {
+//                 category.push(value[1])
+//             }
+//         }
+//     }
+//     return category
+// }
