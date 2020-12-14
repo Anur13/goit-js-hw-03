@@ -6,7 +6,7 @@ const Transaction = {
     DEPOSIT: "deposit",
     WITHDRAW: "withdraw",
 }
-let id = 0
+let idValue = 0
 
 /*
  * Каждая транзакция это объект со свойствами: id, type и amount
@@ -22,22 +22,23 @@ const account = {
      * Метод создает и возвращает объект транзакции.
      * Принимает сумму и тип транзакции.
      */
+
     createTransaction(amount, type) {
         let transaction = {
             type,
             amount,
-            id: (id += 0.5),
+            id: (idValue += 1),
         }
         return transaction
     },
 
     deposit(amount) {
-        this.createTransaction(amount, `deposit`), (this.balance += amount)
+        this.balance += amount
         this.transactions.push(this.createTransaction(amount, `deposit`))
     },
 
     withdraw(amount) {
-        this.createTransaction(amount, `withdraw`), this.transactions.push(this.createTransaction(amount, `withdraw`))
+        this.transactions.push(this.createTransaction(amount, `withdraw`))
         if (amount > this.balance) {
             return `снятие такой суммы не возможно, недостаточно средств.`
         }
@@ -55,12 +56,14 @@ const account = {
      * Метод ищет и возвращает объект транзации по id
      */
     getTransactionDetails(id) {
-        if (account.transactions[id] === undefined) {
-            return `Транзакции с таким id нет`
+        for (let transaction of this.transactions) {
+            // console.log(transaction.id)
+            if (transaction.id === id) {
+                return transaction
+            }
         }
-        return account.transactions[id]
+        return `такой транзакции нет`
     },
-
     /*
      * Метод возвращает количество средств
      * определенного типа транзакции из всей истории транзакций
@@ -77,6 +80,10 @@ const account = {
     },
 }
 account.deposit(500)
+// console.log(account.createTransaction(500, `withdraw`))
+
+// console.log(account.transactions)
+
 account.deposit(1500)
 
 account.deposit(500)
@@ -86,9 +93,10 @@ account.withdraw(400)
 // console.log(account.balance)
 // console.log(account.transactions)
 // console.log(account.getBalance())
-console.log(account.getTransactionDetails())
+console.log(account.getTransactionDetails(7))
 // console.log(account.transactions[0])
 // console.log(account.getTransactionTotal(`deposit`))
 // console.log(account.getTransactionTotal(`withdraw`))
 
 console.log(account.transactions)
+// console.log(account.createTransaction(500, `withdraw`))
