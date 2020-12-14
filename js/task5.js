@@ -54,6 +54,24 @@ const products = [
 
 // вариант 3
 
+// const getAllPropValues = function (arr, prop) {
+//     let category = []
+//     for (let product of arr) {
+//         if (product[prop]) {
+//             category.push(product[prop])
+//         }
+//     }
+//     return category
+// }
+
+// console.log(getAllPropValues(products, "name")) // ['Радар', 'Сканер', 'Дроид', 'Захват']
+
+// console.log(getAllPropValues(products, "quantity")) // [4, 3, 7, 2]
+
+// console.log(getAllPropValues(products, "price")) // []
+
+// вариант 4
+
 const getAllPropValues = function (arr, prop) {
     let category = []
     for (let product of arr) {

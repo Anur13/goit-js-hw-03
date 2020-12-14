@@ -5,10 +5,24 @@ const products = [
     { name: "Захват", price: 1200, quantity: 2 },
 ]
 
-const calculateTotalPrice = function (allProdcuts, productName) {
+// solution 1
+
+// const calculateTotalPrice = function (allProdcuts, productName) {
+//     let total = 0
+//     for (const key of allProdcuts) {
+//         if (key.name === productName) {
+//             total = key.price * key.quantity
+//         }
+//     }
+//     return total
+// }
+
+// solution 2
+
+const calculateTotalPrice = function (allProducts, productName) {
     let total = 0
-    for (const key of allProdcuts) {
-        if (key.name === productName) {
+    for (const key of allProducts) {
+        if (Object.values(key).includes(productName)) {
             total = key.price * key.quantity
         }
     }
