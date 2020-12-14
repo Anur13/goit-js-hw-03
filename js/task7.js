@@ -6,6 +6,7 @@ const Transaction = {
     DEPOSIT: "deposit",
     WITHDRAW: "withdraw",
 }
+let id = 0
 
 /*
  * Каждая транзакция это объект со свойствами: id, type и amount
@@ -17,7 +18,6 @@ const account = {
 
     // История транзакций
     transactions: [],
-
     /*
      * Метод создает и возвращает объект транзакции.
      * Принимает сумму и тип транзакции.
@@ -26,7 +26,7 @@ const account = {
         let transaction = {
             type,
             amount,
-            id: this.transactions.length,
+            id: (id += 0.5),
         }
         return transaction
     },
@@ -86,9 +86,9 @@ account.withdraw(400)
 // console.log(account.balance)
 // console.log(account.transactions)
 // console.log(account.getBalance())
-console.log(account.getTransactionDetails(2))
+console.log(account.getTransactionDetails())
 // console.log(account.transactions[0])
 // console.log(account.getTransactionTotal(`deposit`))
 // console.log(account.getTransactionTotal(`withdraw`))
 
-// console.log(account.transactions)
+console.log(account.transactions)
