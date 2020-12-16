@@ -2,7 +2,6 @@ const countTotalSalary = function (employees) {
     let totalSalary = 0
     let keys = Object.keys(employees)
     for (const key of keys) {
-        // console.log(employees[key])
         totalSalary += employees[key]
     }
     return totalSalary

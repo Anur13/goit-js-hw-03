@@ -6,6 +6,8 @@ const products = [
 ]
 // вариант 1
 
+// const getAllPropValues = (arr, prop) => arr.filter((user) => user.hasOwnProperty(prop)).map((user) => user[prop])
+
 // const getAllPropValues = function (arr, prop) {
 //     let category = []
 
@@ -75,7 +77,7 @@ const products = [
 const getAllPropValues = function (arr, prop) {
     let category = []
     for (let product of arr) {
-        if (Object.keys(product).includes(prop)) {
+        if (product.hasOwnProperty(prop)) {
             category.push(product[prop])
         }
     }

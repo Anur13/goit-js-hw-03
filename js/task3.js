@@ -1,15 +1,10 @@
 const findBestEmployee = function (employees) {
-    let mostTasks = 0
     let bestEmployee
     let keys = Object.keys(employees)
+    let mostTasks = employees[keys[0]]
     let values = Object.values(employees)
-    // console.log(keys.length)
     for (let i = 0; i < keys.length; i++) {
-        console.log(values[i])
-
         if (values[i] > mostTasks) {
-            // console.log(employees[key])
-
             mostTasks = values[i]
             bestEmployee = keys[i]
         }
